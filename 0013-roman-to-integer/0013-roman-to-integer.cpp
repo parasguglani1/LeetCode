@@ -1,43 +1,16 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-class Solution
-{
-
+class Solution {
 public:
-  int romanToInt(string s)
-  {
-	int num[s.length()];
-	int value[] = {1, 5, 10, 50, 100, 500, 1000};
-	char C[] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+int romanToInt(string s) {
+  int total = 0;
 
-	map<char, int> mp;
-	for (int i = 0; i < 7; i++)
-	{
-	  mp[C[i]] = value[i];
-	}
-
-	int ans = 0;
-
-	for (int i = 0; i < s.length(); i++)
-	{
-	  num[i] = mp[s[i]];
-	}
-
-	for (int i = 0; i < s.length() - 1; i++)
-	{
-	  if (num[i + 1] > num[i])
-	  {
-		num[i] = num[i + 1] - num[i];
-		num[i + 1] = 0;
-		i += 1;
-	  }
-	}
-	for (int i = 0; i < s.length(); i++)
-	{
-	  ans += num[i];
-	}
-	return ans;
-  }
-};
-
+  
+    unordered_map<char, int> val{
+        {'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
+        int nn=s.length();
+    for (int i = 0; i < nn; i++)
+    {
+      (val[s[i]] < val[s[i + 1]]) ? total -= val[s[i]] : total += val[s[i]];
+      cout<<s[i+1]<<endl;
+    }
+    return total;
+}};
