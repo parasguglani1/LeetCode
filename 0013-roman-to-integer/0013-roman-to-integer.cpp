@@ -1,16 +1,38 @@
 class Solution {
 public:
-int romanToInt(string s) {
-  int total = 0;
-
-  
-    unordered_map<char, int> val{
-        {'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
-        int nn=s.length();
-    for (int i = 0; i < nn; i++)
-    {
-      (val[s[i]] < val[s[i + 1]]) ? total -= val[s[i]] : total += val[s[i]];
-      cout<<s[i+1]<<endl;
+    int romanToInt(string s) {
+    
+    int num[s.length()], ans = 0;
+        
+        for(int i = 0; i < s.length(); i++){
+            if(s[i] == 'I')
+                num[i] = 1;
+            else if(s[i] == 'V')
+                num[i] = 5;
+            else if(s[i] == 'X')
+                num[i] = 10;
+            else if(s[i] == 'L')
+                num[i] = 50;
+            else if(s[i] == 'C')
+                num[i] = 100;
+            else if(s[i] == 'D')
+                num[i] = 500;
+            else if(s[i] == 'M')
+                num[i] = 1000;
+        }
+        
+        for(int i = 0; i < s.length() - 1; i++){
+            if(num[i + 1] > num[i]){
+                num[i] = num[i + 1] - num[i];
+                num[i + 1] = 0;
+                i += 1;
+            }
+        }
+        
+        for(int i = 0; i < s.length(); i++)
+            ans += num[i];
+        
+        return ans;
+        
     }
-    return total;
-}};
+};
