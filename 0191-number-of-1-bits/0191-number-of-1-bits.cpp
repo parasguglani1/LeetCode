@@ -8,8 +8,8 @@ class Solution
             {
                 // cout<<n<<endl;
                 
-                ans += n % 2;
-                n /= 2;
+                ans += n & 1;
+                n >>=1;
             }
             return ans;
         }
