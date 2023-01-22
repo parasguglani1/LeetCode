@@ -10,36 +10,13 @@
  *};
  */
 #define ll long long
-class Solution
-{
-    public:
-        ll maximum(TreeNode *root)
-        {
-            if (root == NULL)
-            {
-                return LLONG_MIN;
-            }
-            return max((ll)root->val, max((ll)maximum(root->left), (ll)maximum(root->right)));
-        }
-    ll minimum(TreeNode *root)
-    {
-        if (root == NULL)
-        {
-            return LLONG_MAX;
-        }
-        return min((ll)root->val, min(minimum(root->left), minimum(root->right)));
-    }
-    bool isValidBST(TreeNode *root)
-    {
-
-        if (root == NULL)
-        {
-            return true;
-        }
-        ll leftMax = maximum(root->left);
-        ll rightMin = minimum(root->right);
-
-        bool ans = (root->val > leftMax) && (root->val < rightMin) && isValidBST(root->left) && isValidBST(root->right);
-        return ans;
-    }
+class Solution {
+public:
+  bool isValidBST(TreeNode* root, long min = LONG_MIN, long max = LONG_MAX) {
+    if (root == NULL) return true;
+    if (root->val <= min || root->val >= max) return false;
+    return isValidBST(root->left, min, root->val) && isValidBST(root->right, root->val, max);
+  }
+    
+    
 };
