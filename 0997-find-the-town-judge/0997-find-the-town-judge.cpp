@@ -1,38 +1,12 @@
-class Solution {
-public:
-    int findJudge(int n, vector<vector<int>>& trust) {
-        int judge=1;
-        map<int,int> mp;
-        
-        for(auto x: trust)
+class Solution
+{
+    public:
+        int findJudge(int N, vector<vector < int>> &trust)
         {
-            mp[x[1]]++;
-            
-        }
-        int mx=0;
-        for(auto x: mp)
-        {
-            if(x.second>mx)
-            {
-                mx=x.second;
-                judge=x.first;
-            }
-        }
-             
-        for(auto x: trust)
-        {
-            if(x[0]==judge)
-            {
-                return -1;
-                
-            }
-        }
-        if(mx!=n-1)
-        {
+            vector<int> balance(N + 1);
+            for (auto &t: trust) --balance[t[0]], ++balance[t[1]];
+            for (auto i = 1; i <= N; ++i)
+                if (balance[i] == N - 1) return i;
             return -1;
         }
-        
-        
-        return judge;
-    }
 };
