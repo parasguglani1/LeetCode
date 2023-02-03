@@ -3,55 +3,20 @@ class Solution
     public:
         string convert(string s, int numRows)
         {
-            int n = s.length();
+            if (numRows == 1) return s;
             string ans = "";
-            if (numRows == 1 || n <= 2)
+            for (int i = 0; i < numRows; i++)
             {
-                return s;
-            }
-            ans.resize(s.length());
-            int currow = 1;
-            int currindex = 0;
-            int i = 0;
-            int row = numRows - 1;
-            int row2 = 0;
-            bool desc = false;
-            while (i < n)
-            {
-                int add = (row) + (row);
-                int add2 = 2 * row2;
-                int added = 0;
-
-                while (currindex < n)
+                int jumps = 2 *(numRows - 1);	//no of jumps to do for reaching the next element of row
+                for (int j = i; j < s.length(); j += jumps)
                 {
-                    ans[i++] = s[currindex];
-                    if (desc)
-                    {
-                        added = add2;
-                    }
-                    else
-                    {
-                        added = add;
-                    }
-
-                    currindex = added + currindex;
-                    if (row2 > 0 && row2 < numRows - 1 && currindex < n)
-                    {
-                        desc = desc ^ 1;
-                    }
-                }
-                desc = false;
-                row--;
-                currindex = numRows - row - 1;
-                row2++;
-                if (row2 == numRows - 1)
-                {
-                    desc = true;
+                	// increment j always by jumps
+                    ans += s[j];
+                    int midJumps = j + jumps - 2 * i;	// jumps for middle rows 
+                    if (i > 0 && i < numRows - 1 && midJumps < s.length())	// check if middle jumps are in range
+                        ans += s[midJumps];
                 }
             }
-           	// cout<<ans.length();
-           	// if (ans.length() != s.length())
-           	//     return s;
             return ans;
         }
 };
