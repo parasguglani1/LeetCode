@@ -9,10 +9,10 @@ class Solution
                 neg = true;
             }
             int ans = 0;
-            x = abs(x);
-            while (x > 0)
+            // x = abs(x);
+            while (x != 0)
             {
-                if (ans > INT_MAX / 10)
+                if (ans > INT_MAX / 10|| ans<INT_MIN/10)
                 {
                     return 0;
                 }
@@ -20,16 +20,12 @@ class Solution
                 ans += x % 10;
 
                 x /= 10;
-                // if (ans < 0)
-                // {
-                //     return 0;
-                // }
             }
 
-            if (neg)
-            {
-                ans *= -1;
-            }
+            // if (neg)
+            // {
+            //     ans *= -1;
+            // }
             return ans;
         }
 };
