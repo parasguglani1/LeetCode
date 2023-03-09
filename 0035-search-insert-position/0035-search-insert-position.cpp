@@ -14,20 +14,20 @@ class Solution
                 return 0;
             }
             int r = n - 1;
-            while (l <= r)
+            while (l < r)
             {
                 int mid = l + (r - l) / 2;
-                if (nums[mid] == target)
-                {
-                    return mid;
-                }
-                else if (nums[mid] < target)
+                // if (nums[mid] == target)
+                // {
+                //     return mid;
+                // }
+                 if (nums[mid] < target)
                 {
                     l = mid+1 ;
                 }
                 else
                 {
-                    r = mid - 1;
+                    r = mid ;
                 }
             }
             return l;
