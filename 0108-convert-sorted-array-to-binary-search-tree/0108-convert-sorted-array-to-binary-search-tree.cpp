@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-     TreeNode* buildTree(int st,int end,vector<int> v)
+     TreeNode* buildTree(int st,int end,vector<int> &v)
     {
         if(st>end)
         {
