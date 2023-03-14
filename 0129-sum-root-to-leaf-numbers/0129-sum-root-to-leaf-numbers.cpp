@@ -18,7 +18,7 @@ class Solution
             {
                 return 0;
             }
-            if (root->left == root->right)
+            if (root->left == root->right &&root->left==NULL)
             {
                 return prev *10 + root->val;
             }
