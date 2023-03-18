@@ -8,10 +8,12 @@ public:
     }
     
     void visit(string url) {
-        while(!fow.empty())
-        {
-            fow.pop();
-        }
+        // while(!fow.empty())
+        // {
+        //     fow.pop();
+        // }
+        stack<string> f1;
+        fow=f1;
         bck.push(url);
     }
     
