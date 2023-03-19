@@ -1,32 +1,23 @@
-class Solution {
-public:
-    int maxSubArray(vector<int>& nums) {
-        int maxm=INT_MIN;
-        int currsum=0;
-        int maxelement=INT_MIN;
-        if(nums.size()==1)
+class Solution
+{
+    public:
+        int maxSubArray(vector<int> &nums)
         {
-            return nums[0];
-        }
-        for(int i=0;i<nums.size();i++)
-        {
-            maxelement=max(maxelement,nums[i]);
-        }
-        for(int i=0;i<nums.size();i++)
-        {
-            currsum+=nums[i];
-            if(currsum<0)
+            int n = nums.size();
+            int tempsum = nums[0];
+            int maxsum = tempsum;
+            for (int i = 1; i < n; i++)
             {
-                currsum=0;
+                maxsum = max(tempsum, maxsum);
+                if (tempsum < 0)
+                {
+                    tempsum = 0;
+                }
+
+                tempsum += nums[i];
             }
-            maxm=max(maxm,currsum);
-            
+            maxsum = max(tempsum, maxsum);
+
+            return maxsum;
         }
-        
-        if(maxm==0)
-        {
-            return maxelement;
-        }
-        return maxm;
-    }
 };
