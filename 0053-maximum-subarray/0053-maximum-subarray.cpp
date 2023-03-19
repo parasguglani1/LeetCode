@@ -9,12 +9,7 @@ class Solution
             for (int i = 1; i < n; i++)
             {
                 maxsum = max(tempsum, maxsum);
-                if (tempsum < 0)
-                {
-                    tempsum = 0;
-                }
-
-                tempsum += nums[i];
+                tempsum=max(nums[i],tempsum+nums[i]);
             }
             maxsum = max(tempsum, maxsum);
 
