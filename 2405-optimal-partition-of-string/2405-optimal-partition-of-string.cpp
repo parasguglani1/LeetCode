@@ -1,31 +1,22 @@
 class Solution
 {
     public:
-        vector<int> freq;
 
-    void clearvec()
-    {
-        for (int i = 0; i < 26; i++)
+        int partitionString(string s)
         {
-            freq[i] = 0;
-        }
-    }
-    int partitionString(string s)
-    {
-        freq.resize(26);
-        // clearvec();
-        
-        int n = s.size();
-        int ans = 0;
-        for (int i = 0; i < n; i++)
-        {
-            if (freq[s[i]-'a'])
+            int flag = 0;
+            int n = s.size();
+            int ans = 0;
+            for (int i = 0; i < n; i++)
             {
-                ans++;
-                clearvec();
+                int curr = s[i] - 'a';
+                if (flag &1 << curr)
+                {
+                    ans++;
+                    flag = 0;
+                }
+                flag = flag | (1 << curr);
             }
-            freq[s[i]-'a']++;
+            return ans + 1;
         }
-        return ans+1;
-    }
 };
