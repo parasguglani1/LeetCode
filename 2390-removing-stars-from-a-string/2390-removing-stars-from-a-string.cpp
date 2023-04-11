@@ -16,22 +16,27 @@ class Solution
                 {
                     if (count > 0)
                     {
-                        s[i]='*';
+                        s[i] = '*';
                         count--;
-
                     }
                     else
                     {
-                        // ans += s[i];
+                       	// ans += s[i];
                     }
                 }
             }
-            for(int i=0;i<n;i++)
+            
+            int j=0;
+            for (int i = 0; i < n; i++)
             {
-                if(s[i]!='*')
-                    ans+=s[i];
+                if (s[i] != '*')
+                {
+                   s[j++]=s[i];
+                }
+                
             }
-            // reverse(ans.begin(), ans.end());
-            return ans;
+           s.resize(j);
+           	// reverse(ans.begin(), ans.end());
+            return s;
         }
 };
