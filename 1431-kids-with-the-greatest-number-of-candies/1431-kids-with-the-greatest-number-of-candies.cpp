@@ -6,10 +6,10 @@ class Solution
             int n = candies.size();
             vector<bool> ans;
             int mx = *max_element(candies.begin(), candies.end());
-
+            mx -= extraCandies;
             for (int i = 0; i < n; i++)
             {
-                ans.push_back(candies[i] + extraCandies >= mx);
+                ans.push_back(candies[i] >= mx);
             }
             return ans;
         }
