@@ -4,8 +4,8 @@ public:
            vector<int> exists;
     
     SmallestInfiniteSet() {
-              exists.resize(10001);
-        for(int i=1;i<10001;i++)
+              exists.resize(1001);
+        for(int i=1;i<1001;i++)
         {
             pq.push(-i);
             exists[i]=1;
