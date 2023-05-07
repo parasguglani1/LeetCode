@@ -2,7 +2,7 @@ class Solution
 {
     public:
 vector<pair<int,int>> moves={{1,0},{0,1},{-1,0},{0,-1}};
-    bool isValid(int i, int j, int n, int m)
+    bool isValid(int &i, int &j, int &n, int& m)
 {
     return (i>-1 &&i<n &&j>-1 &&j<m);
 }
