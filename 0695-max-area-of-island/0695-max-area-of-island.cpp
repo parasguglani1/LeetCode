@@ -6,7 +6,7 @@ vector<pair<int,int>> moves={{1,0},{0,1},{-1,0},{0,-1}};
 {
     return (i>-1 &&i<n &&j>-1 &&j<m);
 }
-    void dfs(vector<vector<int>> &visited,vector<vector<int>> grid,int i,int j,int n,int m, int &count)
+    void dfs(vector<vector<int>> &visited,vector<vector<int>> &grid,int &i,int &j,int &n,int &m, int &count)
     {
         visited[i][j]=1;
         count+=grid[i][j];
