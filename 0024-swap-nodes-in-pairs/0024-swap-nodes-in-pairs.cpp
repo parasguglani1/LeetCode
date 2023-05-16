@@ -22,10 +22,10 @@ class Solution
             {
                 if (flag)
                 {
-                    ListNode *node1 = temp, *node2 = temp->next;
+                    // ListNode *node1 = temp, *node2 = temp->next;
 
-                    swap(*node1, *node2);
-                    swap(node1->next, node2->next);
+                    // swap(*node1, *node2);
+                    swap(temp->val, temp->next->val);
                     flag = 0;
                 }
                 else
