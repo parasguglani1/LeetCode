@@ -10,11 +10,8 @@ public:
             {
                 isdec=false;
             }
-            else if(nums[i]==nums[i+1])
-            {
-                
-            }
-            else
+           
+            else if(nums[i]<nums[i+1])
             {
                 isinc=false;
             }
