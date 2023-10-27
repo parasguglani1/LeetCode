@@ -1,40 +1,37 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        int m=matrix.size();
-        int n=matrix[0].size();
-        unordered_set<int> sti,stj;
-       for(int i=0;i<matrix.size();i++)
-          {
-           for(int j=0;j<matrix[i].size();j++)
-           {
-               if(matrix[i][j]==0)
-               {
-                   sti.insert(i);
-                   stj.insert(j);
-               }
-               
-           }
-       }
-        
-        for(auto x: sti)
-        {
-            for(int j=0;j<n;j++)
-            {
-                matrix[x][j]=0;
-            }
-        }
-        for(auto x: stj)
+        int n=matrix.size();
+        int m=matrix[0].size();
+        set<int> row,cols;
+        for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
-                matrix[j][x]=0;
+                if(matrix[i][j]==0)
+                {
+                    row.insert(i);
+                    cols.insert(j);
+                }
             }
+            
         }
         
+        for(auto x:row)
+        {
+            for(int i=0;i<m;i++)
+            {
+                matrix[x][i]=0;
+            }
+        }
+        for(auto x:cols)
+        {
+            for(int i=0;i<n;i++)
+            {
+                matrix[i][x]=0;
+            }
+        }
+
         
-    
-    
-    
     }
 };
