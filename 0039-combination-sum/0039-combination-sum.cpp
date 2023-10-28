@@ -1,27 +1,45 @@
-class Solution
-{
-    public:
-        vector<vector < int>> ans;
-    void getcombo(vector<int> &candidates, int target, vector<int> currComb, int currSum, int currIndex)
+class Solution {
+public:
+
+    void helper(int i,int curr, int target,vector<vector<int>> &ans,vector<int> &temp,vector<int> candidates)
     {
-        if (currSum > target) return;
-        if (currSum == target)
+        if(i>=candidates.size())
         {
-            ans.push_back(currComb);
             return;
         }
-        for (int i = currIndex; i < candidates.size(); i++)
+        //base
+        if(curr>target)
         {
-            currComb.push_back(candidates[i]);
-            currSum += candidates[i];
-            getcombo(candidates, target, currComb, currSum, i);
-            currComb.pop_back();
-            currSum -= candidates[i];
+            return;
         }
+        if(curr==target)
+        {
+            ans.push_back(temp);
+            return;
+
+        }
+        //take
+
+
+        curr+=candidates[i];
+        temp.push_back(candidates[i]);
+        helper(i,curr,target,ans,temp,candidates);
+
+        //not take
+        curr-=candidates[i];
+        temp.pop_back();
+        helper(i+1,curr,target,ans,temp,candidates);
     }
-    vector<vector < int>> combinationSum(vector<int> &candidates, int target)
-    {
-        getcombo(candidates, target, {}, 0, 0);
+
+
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+
+        //take
+        int curr=0;
+        vector<int> temp;
+        helper(0,curr,target,ans,temp,candidates);
         return ans;
     }
 };
