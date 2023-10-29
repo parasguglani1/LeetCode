@@ -19,7 +19,7 @@ class Solution
             {
                 return;
             }
-            if (temp.size() < n && v[i] <= target && v[i]!=0)
+            if (temp.size() < n && v[i] <= target )
             {
                 helper(i + 1, v, n, target, ans, temp);
 
