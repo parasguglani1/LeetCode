@@ -1,30 +1,33 @@
-
-class Solution {
-private: 
-    void combinationSum2(vector<int>& candidates, int target, vector<vector<int>> &output, vector<int> &temp, int index){
-        if(target < 0){
+class Solution
+{
+    public:
+ public:
+        vector<vector < int>> ans;
+    void getcombo(vector<int> &candidates, int target, vector<int> currComb, int currSum, int currIndex)
+    {
+        if (currSum > target) return;
+        if (currSum == target)
+        {
+            ans.push_back(currComb);
             return;
         }
-        else if(target == 0){
-            output.push_back(temp);
-        }
-        else{
-            for(int i=index; i<candidates.size(); i++){
-                if(i>index && candidates[i] == candidates[i-1]){
-                    continue;
-                }
-                temp.push_back(candidates[i]);
-                combinationSum2(candidates, target-candidates[i], output, temp, i+1);
-                temp.pop_back();
+        for (int i = currIndex; i < candidates.size(); i++)
+        {
+            if(i>currIndex &&candidates[i]==candidates[i-1])
+            {
+                continue;
             }
+            currComb.push_back(candidates[i]);
+            currSum += candidates[i];
+            getcombo(candidates, target, currComb, currSum, i+1);
+            currComb.pop_back();
+            currSum -= candidates[i];
         }
     }
-public:
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-        sort(candidates.begin(), candidates.end());
-        vector<vector<int>> output;
-        vector<int> temp;
-        combinationSum2(candidates, target, output, temp, 0);
-        return output;
+    vector<vector < int>> combinationSum2(vector<int> &candidates, int target)
+    {
+        sort(candidates.begin(),candidates.end());
+        getcombo(candidates, target, {}, 0, 0);
+        return ans;
     }
 };
