@@ -7,7 +7,7 @@ class Solution
             int n = nums.size();
             if (n == 1) return 1;
 
-            map<int, bool> memo;
+            unordered_map<int, bool> memo;
             int count = 0;
             int temp = 1;
 
