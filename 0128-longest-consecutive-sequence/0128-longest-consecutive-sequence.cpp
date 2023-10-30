@@ -11,12 +11,12 @@ class Solution
             int count = 0;
             int temp = 1;
 
-            for (int x: nums)
+            for (int &x: nums)
             {
                 memo[x] = false;
             }
 
-            for (auto kv: memo)
+            for (const auto &kv: memo)
             {
                 int x = kv.first;
                 if (!memo[x])
