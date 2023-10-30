@@ -1,47 +1,36 @@
 class Solution
 {
-public:
-    int longestConsecutive(vector<int> &nums)
-    {
-        unordered_set<int> st;
-        for (int num : nums)
+    public:
+        int longestConsecutive(vector<int> &nums)
         {
-            st.insert(num);
+            if (nums.empty()) return 0;
+            int n = nums.size();
+            if (n == 1) return 1;
+
+            unordered_map<int, bool> memo;
+            int count = 0;
+            int temp = 1;
+
+            for (int &x: nums)
+            {
+                memo[x] = false;
+            }
+            sort(nums.begin(),nums.end());
+            for ( auto &x: nums)
+            {
+                if (!memo[x])
+                {
+                    while (memo.find(x + 1) != memo.end())
+                    {
+                        temp++;
+                        x++;
+                        memo[x] = true;
+                    }
+                    count = max(count, temp);
+                    temp = 1;
+                }
+            }
+
+            return count;
         }
-        int ans = 0;
-
-        for (int num : nums)
-        {
-            if (st.find(num) == st.end())
-            {
-                // Skip if the number has already been removed
-                continue;
-            }
-
-            int cnt = 1;
-            int curr = num;
-
-            // Check and remove consecutive numbers smaller than the current number
-            while (st.find(curr - 1) != st.end())
-            {
-                st.erase(curr - 1);
-                curr--;
-                cnt++;
-            }
-
-            curr = num;
-
-            // Check and remove consecutive numbers larger than the current number
-            while (st.find(curr + 1) != st.end())
-            {
-                st.erase(curr + 1);
-                curr++;
-                cnt++;
-            }
-
-            ans = max(ans, cnt);
-        }
-
-        return ans;
-    }
 };
