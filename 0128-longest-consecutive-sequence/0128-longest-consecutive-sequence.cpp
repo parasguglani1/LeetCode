@@ -5,7 +5,7 @@ public:
         int n = nums.size();
         if( n == 1) return 1;
 
-        unordered_map<int, bool> memo;
+        map<int, bool> memo;
         int count = 0;
         int temp = 1;
 
