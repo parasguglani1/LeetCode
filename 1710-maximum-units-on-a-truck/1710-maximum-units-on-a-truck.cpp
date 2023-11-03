@@ -1,29 +1,16 @@
 class Solution {
 public:
-    static bool cmp(vector<int> a, vector<int> b)
-    {
-        return a[1]>b[1];
-    }
-    int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
-        //sum of k largest
-        
-        sort(boxTypes.begin(),boxTypes.end(),cmp);
-        int ans=0;
-            for(auto x:boxTypes)
-            {
-                
-                if(truckSize>=x[0])
-                {
-                    truckSize-=x[0];
-                    ans+=x[1]*x[0];
-                }
-                else
-                {
-                    ans+=truckSize*x[1];
-                    return ans;
-                }
-                
-            }
-        return ans;
-    }
+  
+int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
+	int freq[1001]{0}, maxUnits = 0;   // freq[i] = number of boxes that can hold i units
+	for(auto& box : boxTypes) freq[box[1]] += box[0];
+	// greedily choose starting from max units till either truckSize runs out or you choose all boxes
+	for(int units = 1000; truckSize > 0 && ~units; --units) { 
+		maxUnits += min(truckSize, freq[units]) * units;
+		truckSize -= freq[units];
+	}
+	return maxUnits;
+}
+
+    
 };
