@@ -13,12 +13,13 @@ public:
             indegree[edges[i][0]]++;
         }
         queue<int> q;
-        
+        int cnt=0;
         for(int i=0;i<n;i++)
         {
             if(indegree[i]==0)
             {
                 q.push(i);
+                cnt++;
             }
         }
              
@@ -34,21 +35,22 @@ public:
                 if(indegree[adj[curr][i]]==0)
                 {
                     q.push(adj[curr][i]);
+                    cnt++;
                     
                 }
                 
             }
             
         }
-        for(int i=0;i<n;i++)
-        {
-            if(indegree[i]>0)
-            {
-                return false;
-            }
-        }
-        
-        return true;
+        // for(int i=0;i<n;i++)
+        // {
+        //     if(indegree[i]>0)
+        //     {
+        //         return false;
+        //     }
+        // }
+        return cnt==n;
+        // return true;
         
 
         
