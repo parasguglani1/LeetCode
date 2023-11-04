@@ -1,54 +1,51 @@
-class Solution {
-public:
-    vector<int> findOrder(int n, vector<vector<int>>& edges) {
-        
-        //do topo sort
-        
-        vector<vector<int>> adj(n);
-        
-        int m=edges.size();
-        vector<int> indegree(n,0);
-        for(int i=0;i<m;i++)
+class Solution
+{
+    public:
+        vector<int> findOrder(int n, vector<vector < int>> &edges)
         {
-            adj[edges[i][1]].push_back(edges[i][0]);
-            indegree[edges[i][0]]++;
-        }
-        queue<int> q;
-        int cnt=0;
-        vector<int> topo;
-        for(int i=0;i<n;i++)
-        {
-            if(indegree[i]==0)
+
+           	//do topo sort
+
+            vector<vector < int>> adj(n);
+
+            int m = edges.size();
+            vector<int> indegree(n, 0);
+            for (int i = 0; i < m; i++)
             {
-                q.push(i);
-                cnt++;
+                adj[edges[i][1]].push_back(edges[i][0]);
+                indegree[edges[i][0]]++;
             }
-        }
-             
-    
-        while(!q.empty())
-        {
-            int curr=q.front();
-            topo.push_back(curr);
-            q.pop();
-            
-            for(int i=0;i<adj[curr].size();i++)
+            queue<int> q;
+            int cnt = 0;
+            vector<int> topo;
+            for (int i = 0; i < n; i++)
             {
-                indegree[adj[curr][i]]--;
-                if(indegree[adj[curr][i]]==0)
+                if (indegree[i] == 0)
                 {
-                    q.push(adj[curr][i]);
+                    q.push(i);
                     cnt++;
-                    
+                    topo.push_back(i);
                 }
-                
             }
-            
+
+            while (!q.empty())
+            {
+                int curr = q.front();
+                q.pop();
+
+                for (int i = 0; i < adj[curr].size(); i++)
+                {
+                    indegree[adj[curr][i]]--;
+                    if (indegree[adj[curr][i]] == 0)
+                    {
+                        topo.push_back(adj[curr][i]);
+
+                        q.push(adj[curr][i]);
+                        cnt++;
+                    }
+                }
+            }
+            vector<int> ans;
+            return cnt == n ? topo : ans;
         }
-   vector<int> ans;
-        return cnt==n?topo:ans;        
-        
-        
-        
-    }
 };
