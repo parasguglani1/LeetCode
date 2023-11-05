@@ -14,18 +14,22 @@ class Solution{
     {
         sort(arr,arr+n);
         sort(dep,dep+n);
-        vector<int> times(2361,0);
-        for(int i=0;i<n;i++)
+
+        int i=0,j=0;
+        int cnt=0,ans=0;
+        while(i<n &&j<n)
         {
-            times[arr[i]]++;
-            times[dep[i]+1]--;
-        }
-        int ans=0,cnt=0;
-        for(int i=0;i<=2360;i++)
-        {
-            cnt+=times[i];
+            if(arr[i]<=dep[j])
+            {
+                cnt++;
+                i++;
+            }
+            else
+            {
+                cnt--;
+                j++;
+            }
             ans=max(ans,cnt);
-            
         }
         return ans;
     	// Your code here
