@@ -4,24 +4,11 @@ class Solution
 
         int maxProfit(vector<int> &prices)
         {
-            int n = prices.size();
-            int profit = 0, buyvalue = 0, sellvalue = 0, i = 0;
-
-            while (i < n)
+            int n=prices.size();
+            int profit=0;
+            for(int i=1;i<n;i++)
             {
-                while (i < n - 1 && prices[i] >= prices[i + 1])
-                {
-                    i++;
-                }
-                buyvalue = prices[i];
-
-                while (i < n - 1 && prices[i] < prices[i + 1])
-                {
-                    i++;
-                }
-                sellvalue = prices[i];
-                profit += sellvalue - buyvalue;
-                i++;
+                profit+=max(0,prices[i]-prices[i-1]);
             }
             return profit;
         }
