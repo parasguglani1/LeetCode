@@ -1,24 +1,30 @@
-class Solution {
-public:
-    int uniquePaths(int m, int n) {
-        // (m+n-2)!/(m-1)!(n-1)!
-        if(m<n)
+class Solution
+{
+    public:
+
+        int getpath(int m, int n, int i, int j, vector<vector < int>> &dp)
         {
-            swap(m,n);
-        }
-//4 6 
-        // 8!/5! 3!
-            long long ans=1;
-            for(int i=m,j=1;i<=m+n-2;i++,j++)
+            if (i == n - 1 && j == m - 1)
             {
-                ans*=i;
-                ans/=j;
+                return 1;
             }
-        // cout<<ans<<endl;
-        // for(int i=1;i<n;i++)
-        // {
-        //     ans/=i;
-        // }
+            if (i >= n || j >= m)
+                return 0;
+            if (dp[i][j] != -1)
+            {
+                return dp[i][j];
+            }
+
+            int left = getpath(m, n, i + 1, j, dp);
+            int down = getpath(m, n, i, j + 1, dp);
+            return dp[i][j] = left + down;
+        }
+    int uniquePaths(int m, int n)
+    {
+        vector<vector < int>> dp(n + 1, vector<int> (m + 1, -1));
+
+        int ans = getpath(m, n, 0, 0, dp);
+
         return ans;
     }
 };
