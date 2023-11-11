@@ -21,10 +21,10 @@ class Solution
         }
     int uniquePaths(int m, int n)
     {
-        vector<int> dp(n, 1);
-        for (int i = 1; i < m; i++)
-            for (int j = 1; j < n; j++)
-                dp[j] += dp[j - 1];
-        return dp[n - 1];
+        long ans = 1;
+        for(int i = m+n-2, j = 1; i >= max(m, n); i--, j++) 
+            ans = (ans * i) / j;
+        return ans;
+
     }
 };
