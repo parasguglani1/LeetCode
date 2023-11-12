@@ -19,9 +19,11 @@ class Solution
     int minPathSum(vector<vector < int>> &grid)
     {
         int n = grid.size(), m = grid[0].size();
-        vector<vector < int>> dp(n + 1, vector<int> (m + 1, -1));
+        // vector<vector < int>> dp(n + 1, vector<int> (m + 1, -1));
 
-        dp[0][0]=grid[0][0];
+        vector<int> curr(m),prev(m);
+        // dp[0][0]=grid[0][0];
+        prev[0]=curr[0]=grid[0][0];
         // for (int i = 1; i < m; i++)
         // {
         //     dp[0][i] = grid[0][i]+dp[0][i-1];
@@ -37,15 +39,16 @@ class Solution
                 int left = 1e9;
                 int up = 1e9;
                 if (i > 0)
-                    up = dp[i - 1][j];
+                    up = prev[j];
                 if (j > 0)
-                    left = dp[i][j - 1];
-                dp[i][j] = min(left, up) + grid[i][j];
-                cout<<dp[i][j]<<' ';
+                    left = curr[j - 1];
+            curr[j] = min(left, up) + grid[i][j];
+                // cout<<dp[i][j]<<' ';
             }
-            cout<<endl;
+            prev=curr;
+            // cout<<endl;
         }
 
-        return dp[n-1][m-1];
+        return curr[m-1];
     }
 };
