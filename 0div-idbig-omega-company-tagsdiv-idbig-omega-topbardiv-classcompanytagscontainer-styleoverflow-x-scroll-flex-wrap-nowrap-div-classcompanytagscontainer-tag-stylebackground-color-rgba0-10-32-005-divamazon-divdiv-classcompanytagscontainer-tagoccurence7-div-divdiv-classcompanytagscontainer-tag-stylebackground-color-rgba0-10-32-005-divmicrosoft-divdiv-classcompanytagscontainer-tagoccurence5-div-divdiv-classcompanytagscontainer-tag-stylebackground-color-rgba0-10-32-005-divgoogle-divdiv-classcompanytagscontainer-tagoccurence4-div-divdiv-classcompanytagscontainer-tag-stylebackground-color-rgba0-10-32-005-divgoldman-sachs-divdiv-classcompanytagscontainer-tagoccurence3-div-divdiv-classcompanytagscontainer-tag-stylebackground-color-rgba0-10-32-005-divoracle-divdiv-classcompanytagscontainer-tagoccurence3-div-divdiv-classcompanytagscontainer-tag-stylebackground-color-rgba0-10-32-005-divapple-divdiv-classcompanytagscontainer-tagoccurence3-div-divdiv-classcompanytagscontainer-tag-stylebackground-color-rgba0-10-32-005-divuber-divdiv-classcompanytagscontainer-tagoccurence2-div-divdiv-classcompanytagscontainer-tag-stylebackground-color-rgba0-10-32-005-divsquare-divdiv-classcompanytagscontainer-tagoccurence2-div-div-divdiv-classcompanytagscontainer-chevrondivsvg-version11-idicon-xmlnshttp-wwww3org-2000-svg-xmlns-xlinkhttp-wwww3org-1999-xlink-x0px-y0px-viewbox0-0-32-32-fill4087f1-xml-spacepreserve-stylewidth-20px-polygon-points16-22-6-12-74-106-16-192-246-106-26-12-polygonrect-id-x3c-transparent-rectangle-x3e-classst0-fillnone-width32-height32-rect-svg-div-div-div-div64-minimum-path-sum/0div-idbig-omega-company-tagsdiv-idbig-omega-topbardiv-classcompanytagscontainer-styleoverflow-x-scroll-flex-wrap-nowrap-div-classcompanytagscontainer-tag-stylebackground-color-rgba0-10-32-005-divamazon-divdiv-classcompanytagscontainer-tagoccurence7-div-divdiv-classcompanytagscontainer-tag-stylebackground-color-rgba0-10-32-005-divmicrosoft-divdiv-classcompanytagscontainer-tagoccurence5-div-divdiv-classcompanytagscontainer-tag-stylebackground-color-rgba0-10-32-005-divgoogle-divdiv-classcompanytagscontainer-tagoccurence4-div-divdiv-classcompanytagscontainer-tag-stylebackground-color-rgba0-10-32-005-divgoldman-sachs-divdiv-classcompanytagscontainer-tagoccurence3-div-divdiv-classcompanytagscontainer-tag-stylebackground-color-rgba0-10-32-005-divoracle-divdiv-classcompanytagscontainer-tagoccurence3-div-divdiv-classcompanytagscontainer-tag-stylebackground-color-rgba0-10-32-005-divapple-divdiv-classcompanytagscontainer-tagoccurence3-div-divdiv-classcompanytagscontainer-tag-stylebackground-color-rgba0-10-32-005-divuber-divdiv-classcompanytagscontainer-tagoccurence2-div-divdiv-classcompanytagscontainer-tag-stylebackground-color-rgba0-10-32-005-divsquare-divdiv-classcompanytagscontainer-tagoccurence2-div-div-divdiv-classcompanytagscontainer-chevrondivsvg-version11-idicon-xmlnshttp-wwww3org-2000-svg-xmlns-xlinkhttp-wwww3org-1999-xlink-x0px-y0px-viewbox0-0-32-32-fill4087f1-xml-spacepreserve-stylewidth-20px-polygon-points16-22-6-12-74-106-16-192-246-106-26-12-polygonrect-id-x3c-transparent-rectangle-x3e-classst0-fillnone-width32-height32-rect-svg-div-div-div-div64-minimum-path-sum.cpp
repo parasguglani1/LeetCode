@@ -22,17 +22,21 @@ class Solution
         vector<vector < int>> dp(n + 1, vector<int> (m + 1, -1));
 
         dp[0][0]=grid[0][0];
-        for (int i = 1; i < m; i++)
-        {
-            dp[0][i] = grid[0][i]+dp[0][i-1];
-        }
-        for (int i = 1; i < n; i++)
+        // for (int i = 1; i < m; i++)
+        // {
+        //     dp[0][i] = grid[0][i]+dp[0][i-1];
+        // }
+        for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
             {
+                if(i==0 &&j==0)
+                {
+                    continue;
+                }
                 int left = 1e9;
                 int up = 1e9;
-                // if (i > 0)
+                if (i > 0)
                     up = dp[i - 1][j];
                 if (j > 0)
                     left = dp[i][j - 1];
