@@ -37,28 +37,27 @@ class Solution
 
         vector<vector < int>> dp(n, vector<int> (k + 1, 0));
 
+        vector<int> curr(k + 1), prev(k + 1);
        	//tabulation
 
+        prev[0] = 1;
+        if (nums[0] <= k)
+            prev[nums[0]] = 1;
         for (int ind = 1; ind < n; ind++)
         {
-            dp[ind][0] = 1;
-        }
-        if(nums[0]<=k)
-        dp[0][nums[0]]=1;
-        for (int ind = 1; ind < n; ind++)
-        {
-            // cout<<nums[ind]<<' ';
-            for (int target = 1 ;target<= k; target++)
+           	// cout<<nums[ind]<<' ';
+            for (int target = 1; target <= k; target++)
             {
-                bool nottake = dp[ind - 1][target]; 
-                // cout<<nottake<<endl;
-                bool take=0;
-                if(target>=nums[ind])
-                    take = dp[ind - 1][target - nums[ind]];
-                dp[ind][target]=take|nottake;
+                bool nottake = prev[target];
+               	// cout<<nottake<<endl;
+                bool take = 0;
+                if (target >= nums[ind])
+                    take = prev[target - nums[ind]];
+                curr[target] = take | nottake;
             }
+            prev = curr;
         }
-             return dp[n-1][k];
+        return prev[k];
        	// for(int i=0;i < dp.size();i++)
        	// {
        	//     for(int j=0;j < dp[0].size();j++)
@@ -67,6 +66,6 @@ class Solution
        	//     }
        	//     cout<<endl;
        	// }
-        // return ispossible(nums, sum / 2, n - 1, dp);
+       	// return ispossible(nums, sum / 2, n - 1, dp);
     }
 };
