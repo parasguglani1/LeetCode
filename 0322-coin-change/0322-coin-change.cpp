@@ -1,11 +1,8 @@
 class Solution {
 public:
-    int getans(vector<int> &coins,int ind, long long target,vector<vector<long long>> &dp)
+    int getans(vector<int> &coins,int ind, int target,vector<vector<int>> &dp)
     {
-        // if(target<0)
-        // {
-        //     return 0;
-        // }
+    
         //base
         if(ind==0)
         {
@@ -19,16 +16,16 @@ public:
             return dp[ind][target];
         }
         
-        long long take=INT_MAX;
+        int take=INT_MAX;
         if(target>=coins[ind]) take= 1+getans(coins,ind,target-coins[ind],dp);
-        long long nottake= getans(coins,ind-1,target,dp);
-        long long curans=min(take,nottake);
+        int nottake= getans(coins,ind-1,target,dp);
+        int curans=min(take,nottake);
         return dp[ind][target]=curans;
     }
     int coinChange(vector<int>& coins, int amount) {
         int n=coins.size();
         
-        vector<vector<long long>> dp(n,vector<long long> (amount+1,-1));
+        vector<vector<int>> dp(n,vector<int> (amount+1,-1));
         int ans=getans(coins,n-1,amount,dp);
         if(ans>=1e9)
         {
