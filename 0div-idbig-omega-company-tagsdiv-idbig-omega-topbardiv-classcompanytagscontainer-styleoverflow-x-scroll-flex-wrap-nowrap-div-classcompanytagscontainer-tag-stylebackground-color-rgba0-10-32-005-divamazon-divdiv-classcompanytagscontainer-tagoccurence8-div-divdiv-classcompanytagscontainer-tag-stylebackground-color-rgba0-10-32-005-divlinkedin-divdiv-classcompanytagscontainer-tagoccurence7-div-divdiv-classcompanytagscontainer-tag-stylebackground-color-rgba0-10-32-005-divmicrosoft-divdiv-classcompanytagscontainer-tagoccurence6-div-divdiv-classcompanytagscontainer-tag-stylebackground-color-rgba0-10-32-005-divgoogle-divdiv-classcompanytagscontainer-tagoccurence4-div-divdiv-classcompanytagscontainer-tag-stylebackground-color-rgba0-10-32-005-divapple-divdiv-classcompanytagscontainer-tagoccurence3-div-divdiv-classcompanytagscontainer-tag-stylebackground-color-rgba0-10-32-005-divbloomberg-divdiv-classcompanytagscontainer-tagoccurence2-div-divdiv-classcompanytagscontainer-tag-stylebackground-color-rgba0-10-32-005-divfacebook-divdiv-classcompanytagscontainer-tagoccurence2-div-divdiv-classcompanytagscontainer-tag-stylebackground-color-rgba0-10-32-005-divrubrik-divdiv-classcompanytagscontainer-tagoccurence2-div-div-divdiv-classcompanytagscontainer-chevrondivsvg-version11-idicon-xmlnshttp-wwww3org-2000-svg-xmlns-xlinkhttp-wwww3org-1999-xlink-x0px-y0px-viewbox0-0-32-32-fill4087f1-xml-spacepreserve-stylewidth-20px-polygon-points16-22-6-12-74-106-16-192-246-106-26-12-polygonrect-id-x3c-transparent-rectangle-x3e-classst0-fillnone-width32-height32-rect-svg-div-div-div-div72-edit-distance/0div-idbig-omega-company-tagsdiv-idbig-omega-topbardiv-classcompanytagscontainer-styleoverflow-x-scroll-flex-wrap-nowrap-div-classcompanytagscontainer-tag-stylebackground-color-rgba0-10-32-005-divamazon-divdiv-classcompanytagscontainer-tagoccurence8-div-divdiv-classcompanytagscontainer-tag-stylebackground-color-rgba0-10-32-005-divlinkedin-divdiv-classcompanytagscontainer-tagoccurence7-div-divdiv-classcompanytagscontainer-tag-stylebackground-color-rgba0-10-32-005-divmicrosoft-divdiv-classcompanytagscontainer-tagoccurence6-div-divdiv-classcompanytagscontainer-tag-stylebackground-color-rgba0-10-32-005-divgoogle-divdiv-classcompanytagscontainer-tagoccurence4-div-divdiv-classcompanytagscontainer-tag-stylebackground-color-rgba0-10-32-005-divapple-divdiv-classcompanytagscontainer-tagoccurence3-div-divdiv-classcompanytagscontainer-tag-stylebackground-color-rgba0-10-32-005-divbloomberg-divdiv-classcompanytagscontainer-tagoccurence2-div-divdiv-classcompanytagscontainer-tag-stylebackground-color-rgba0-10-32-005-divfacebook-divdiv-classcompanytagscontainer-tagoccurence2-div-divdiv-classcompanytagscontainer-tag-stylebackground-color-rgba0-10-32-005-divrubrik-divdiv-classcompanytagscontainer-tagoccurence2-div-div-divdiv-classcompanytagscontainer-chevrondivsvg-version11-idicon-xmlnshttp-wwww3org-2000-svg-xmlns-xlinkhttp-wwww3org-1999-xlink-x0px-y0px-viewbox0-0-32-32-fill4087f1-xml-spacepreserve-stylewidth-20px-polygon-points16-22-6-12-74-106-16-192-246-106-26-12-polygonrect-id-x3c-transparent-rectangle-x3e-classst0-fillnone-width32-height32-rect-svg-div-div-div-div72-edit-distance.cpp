@@ -1,7 +1,7 @@
 class Solution
 {
     public:
-    //recursion
+    //memoization
         int getans(int i, int j, string &word1, string &word2,vector<vector<int>>&dp)
         {
             if(i<0)
