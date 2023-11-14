@@ -1,45 +1,42 @@
 class Solution
 {
     public:
-       	//tabulation
+       	//space optimize
     int minDistance(string word1, string word2)
     {
         int n = word1.size(), m = word2.size();
-        vector<vector < int>> dp(n + 1, vector<int> (m + 1, 0));
+        vector<int> prev(m+1,0),curr(m+1,0);
 
-        for (int i = 0; i <= n; i++)
-        {
-            dp[i][0] = i ;
-        }
         for (int j = 0; j <= m; j++)
         {
-            dp[0][j] = j ;
+        prev[j] = j;
         }
 
         for (int i = 1; i <= n; i++)
         {
+            curr[0]=i;
             for (int j = 1; j <= m; j++)
             {
                 int same = 0, insert = 1e9, replace = 0, chardelete = 1e9;
-                same = dp[i - 1][j - 1];
-               	// return same;
+                same = prev[j - 1];
                 replace = same;
                 if (word1[i-1] != word2[j-1])
                 {
                    	//insert
-                    insert = dp[i][j-1] + 1;;
+                    insert = curr[j-1] + 1;;
 
                     replace++;
                    	//delete
-                    chardelete = dp[i - 1][j] + 1;
+                    chardelete = prev[j] + 1;
                 }
-                dp[i][j] = min({ insert,
+                curr[j] = min({ insert,
                     replace,
                     chardelete });
             }
+            prev=curr;
         }
 
-        int ans = dp[n][m];
+        int ans = prev[m];
        	// int ans = getans(n1-1, n2-1, word1, word2,dp);
         return ans;
     }
