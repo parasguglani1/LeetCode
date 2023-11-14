@@ -7,12 +7,7 @@ class Solution
 
             int n = s.size();
             int m = t.size();
-            vector<vector < long long>> dp(n + 1, vector < long long > (m + 1, 0));
             vector<long long>curr(m+1,0),prev(m+1,0);
-            // for (int j = 0; j <= n; j++)
-            // {
-            //     dp[j][0] = 1;
-            // }
             prev[0]=curr[0]=1;
             for (int i = 1; i <= n; i++)
             {
