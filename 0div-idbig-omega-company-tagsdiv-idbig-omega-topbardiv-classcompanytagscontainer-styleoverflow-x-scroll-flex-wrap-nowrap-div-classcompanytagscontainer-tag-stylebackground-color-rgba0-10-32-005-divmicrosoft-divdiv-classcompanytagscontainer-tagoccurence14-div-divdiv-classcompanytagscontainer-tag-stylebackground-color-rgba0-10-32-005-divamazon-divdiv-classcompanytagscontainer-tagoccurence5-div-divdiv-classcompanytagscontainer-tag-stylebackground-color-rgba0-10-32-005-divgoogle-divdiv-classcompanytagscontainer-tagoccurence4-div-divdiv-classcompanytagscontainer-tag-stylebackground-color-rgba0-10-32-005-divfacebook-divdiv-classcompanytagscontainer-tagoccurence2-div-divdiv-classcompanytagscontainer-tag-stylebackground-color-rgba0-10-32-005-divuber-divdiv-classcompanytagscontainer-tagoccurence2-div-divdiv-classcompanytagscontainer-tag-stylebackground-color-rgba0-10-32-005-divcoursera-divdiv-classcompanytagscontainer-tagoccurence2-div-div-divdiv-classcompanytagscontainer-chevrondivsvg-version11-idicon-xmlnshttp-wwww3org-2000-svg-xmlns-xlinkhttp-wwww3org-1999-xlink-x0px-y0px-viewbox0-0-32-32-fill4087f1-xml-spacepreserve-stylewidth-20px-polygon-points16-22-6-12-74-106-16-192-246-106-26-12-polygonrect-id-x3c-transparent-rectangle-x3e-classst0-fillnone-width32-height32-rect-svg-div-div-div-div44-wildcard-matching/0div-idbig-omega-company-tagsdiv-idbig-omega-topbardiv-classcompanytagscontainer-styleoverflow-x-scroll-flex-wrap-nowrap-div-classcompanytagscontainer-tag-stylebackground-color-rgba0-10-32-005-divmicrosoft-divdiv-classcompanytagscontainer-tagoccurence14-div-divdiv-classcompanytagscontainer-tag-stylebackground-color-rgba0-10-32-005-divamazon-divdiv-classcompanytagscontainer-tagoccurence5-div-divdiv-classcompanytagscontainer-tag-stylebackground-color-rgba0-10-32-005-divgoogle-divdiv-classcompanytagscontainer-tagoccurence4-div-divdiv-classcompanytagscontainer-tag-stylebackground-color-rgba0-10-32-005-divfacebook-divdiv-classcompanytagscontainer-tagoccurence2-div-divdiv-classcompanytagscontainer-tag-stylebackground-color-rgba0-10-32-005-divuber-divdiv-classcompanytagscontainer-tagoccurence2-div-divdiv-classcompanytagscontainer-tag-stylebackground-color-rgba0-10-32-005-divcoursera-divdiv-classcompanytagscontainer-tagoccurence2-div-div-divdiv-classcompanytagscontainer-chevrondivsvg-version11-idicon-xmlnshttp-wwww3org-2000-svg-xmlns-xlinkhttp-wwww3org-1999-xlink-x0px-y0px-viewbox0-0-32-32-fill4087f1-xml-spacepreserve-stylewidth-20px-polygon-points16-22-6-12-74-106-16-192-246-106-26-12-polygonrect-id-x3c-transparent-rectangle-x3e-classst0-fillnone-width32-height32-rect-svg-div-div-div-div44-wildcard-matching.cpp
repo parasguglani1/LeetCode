@@ -9,17 +9,27 @@ class Solution
         vector<vector < int>> dp(n + 1, vector<int> (m + 1, 0));
         dp[0][0] = 1;
 
+       bool flag=true;
+//         for(int j=m;j>=1;j--)
+//         {
+//             if(p[j-1]!='*')
+//             {
+//                 flag=false;
+//             }
+//             dp[0][j]=flag;
+            
+//         }
         for (int j = 1; j <= m; j++)
         {
-            bool flag = true;
-            for (int ind = 1; ind <= j; ind++)
-            {
-                if (p[ind - 1] != '*')
+            // bool flag = true;
+        //     for (int ind = 1; ind <= j; ind++)
+        //     {
+                if (p[j - 1] != '*')
                 {
                     flag = false;
                     break;
                 }
-            }
+            // }
             dp[0][j] = flag;
         }
 
