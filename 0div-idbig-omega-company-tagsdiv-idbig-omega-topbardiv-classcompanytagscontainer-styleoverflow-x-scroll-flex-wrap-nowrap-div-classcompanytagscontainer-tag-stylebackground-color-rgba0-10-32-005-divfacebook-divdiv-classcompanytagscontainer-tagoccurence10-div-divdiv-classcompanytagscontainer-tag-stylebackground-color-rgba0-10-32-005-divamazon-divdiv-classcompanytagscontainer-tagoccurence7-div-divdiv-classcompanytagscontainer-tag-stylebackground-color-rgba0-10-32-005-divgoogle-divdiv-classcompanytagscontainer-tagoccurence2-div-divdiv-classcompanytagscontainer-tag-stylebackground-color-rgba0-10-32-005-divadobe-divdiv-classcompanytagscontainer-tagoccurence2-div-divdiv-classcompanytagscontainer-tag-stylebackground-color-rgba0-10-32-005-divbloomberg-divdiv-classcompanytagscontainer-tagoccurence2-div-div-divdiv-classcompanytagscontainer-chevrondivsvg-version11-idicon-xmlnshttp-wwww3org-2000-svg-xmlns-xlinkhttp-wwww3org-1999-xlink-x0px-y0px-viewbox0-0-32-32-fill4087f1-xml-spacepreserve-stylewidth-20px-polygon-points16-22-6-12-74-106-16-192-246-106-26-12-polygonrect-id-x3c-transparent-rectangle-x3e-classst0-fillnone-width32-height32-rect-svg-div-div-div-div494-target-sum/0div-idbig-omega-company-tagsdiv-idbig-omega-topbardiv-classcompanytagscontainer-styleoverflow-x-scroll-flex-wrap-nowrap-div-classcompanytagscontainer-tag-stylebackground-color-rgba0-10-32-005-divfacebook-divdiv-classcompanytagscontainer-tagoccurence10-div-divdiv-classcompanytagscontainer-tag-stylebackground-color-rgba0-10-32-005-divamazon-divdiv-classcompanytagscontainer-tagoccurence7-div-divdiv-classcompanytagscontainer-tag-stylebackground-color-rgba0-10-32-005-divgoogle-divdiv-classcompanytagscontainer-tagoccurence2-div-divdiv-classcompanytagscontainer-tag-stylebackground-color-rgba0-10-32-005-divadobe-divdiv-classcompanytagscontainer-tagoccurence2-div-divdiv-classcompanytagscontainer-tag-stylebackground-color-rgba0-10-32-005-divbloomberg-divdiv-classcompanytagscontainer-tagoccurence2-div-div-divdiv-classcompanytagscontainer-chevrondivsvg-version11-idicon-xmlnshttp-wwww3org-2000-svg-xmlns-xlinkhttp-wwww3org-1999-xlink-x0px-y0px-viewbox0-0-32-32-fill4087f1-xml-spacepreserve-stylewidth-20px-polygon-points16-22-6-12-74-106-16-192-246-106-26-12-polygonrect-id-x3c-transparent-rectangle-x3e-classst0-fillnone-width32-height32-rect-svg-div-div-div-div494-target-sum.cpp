@@ -37,7 +37,7 @@ class Solution
        	// i.e find no of ways to make this subset sum
         int n = nums.size();
         int totalsum = accumulate(nums.begin(), nums.end(), 0);
-        int subsetsum = totalsum - target;
+        int subsetsum = totalsum + target;
         if (subsetsum % 2)
         {
             return false;
