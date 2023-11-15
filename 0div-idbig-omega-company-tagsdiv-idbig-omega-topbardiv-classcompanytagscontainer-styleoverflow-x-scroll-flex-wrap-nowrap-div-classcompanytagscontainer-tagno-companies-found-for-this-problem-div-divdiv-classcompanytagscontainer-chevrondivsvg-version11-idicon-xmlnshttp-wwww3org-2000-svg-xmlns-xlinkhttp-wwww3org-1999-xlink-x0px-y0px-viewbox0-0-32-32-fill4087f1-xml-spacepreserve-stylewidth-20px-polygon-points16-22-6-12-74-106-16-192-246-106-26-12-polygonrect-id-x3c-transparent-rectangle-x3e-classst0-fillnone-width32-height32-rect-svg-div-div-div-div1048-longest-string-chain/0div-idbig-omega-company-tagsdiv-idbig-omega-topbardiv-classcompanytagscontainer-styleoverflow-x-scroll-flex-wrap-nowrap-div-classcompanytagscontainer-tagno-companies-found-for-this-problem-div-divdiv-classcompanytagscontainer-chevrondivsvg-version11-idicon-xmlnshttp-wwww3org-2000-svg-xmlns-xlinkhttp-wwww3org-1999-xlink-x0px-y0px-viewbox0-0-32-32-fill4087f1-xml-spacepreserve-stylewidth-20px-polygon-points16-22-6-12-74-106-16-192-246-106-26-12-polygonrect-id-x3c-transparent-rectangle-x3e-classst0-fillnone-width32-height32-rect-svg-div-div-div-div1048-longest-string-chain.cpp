@@ -1,11 +1,11 @@
 class Solution
 {
     public:
-        static bool cmp(string str1, string str2)
+        static bool cmp(string &str1, string &str2)
         {
             return str1.size() < str2.size();
         }
-    bool check(string str1, string str2)
+    bool check(string &str1, string &str2)
     {
         int n = str1.size(), m = str2.size();
         if (n != m + 1)
