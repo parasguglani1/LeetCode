@@ -1,38 +1,27 @@
 class Solution {
 public:
     vector<int> findDiagonalOrder(vector<vector<int>>& nums) {
-        int m=nums.size(),n=0;
+        int n=nums.size();
         
-        //find max value and store in n;
+        map<int,vector<int>> mp;
+        vector<int> ans;
         
-        for(int i=0;i<m;i++){
-            if(n<nums[i].size())
-                n=nums[i].size();
-        }
-        vector<vector<int>>temp(m+n);
-        vector<int>ans;
-        
-        // convert mat into adjacency list and keep value in temp
-        
-        for(int i=0;i<m;i++){
-            for(int j=0;j<nums[i].size();j++){
-                temp[i+j].push_back(nums[i][j]);
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<nums[i].size();j++)
+            {
+                mp[i+j].push_back(nums[i][j]);
             }
         }
-        
-        // here we reverse matrix
-        
-        for(int i=0;i<m+n;i++){
-            reverse(temp[i].begin(),temp[i].end());
-        }
-        
-        // all value  of temp in ans vector
-        
-         for(int i=0;i<m+n;i++){
-            for(int j=0;j<temp[i].size();j++){
-                ans.push_back(temp[i][j]);
-            }
+        for(auto &x:mp)
+        {
+            auto &v=x.second;
+            reverse(v.begin(),v.end());
+            ans.insert(ans.end(),v.begin(),v.end());
+            
         }
         return ans;
+        
+        
     }
 };
