@@ -5,7 +5,7 @@ public:
         int m=word2.size();
         int i=0,j=0;
         int l=0,r=0;
-        while(i<n)
+        while(true)
         {
             if(l==word1[i].size())
             {
