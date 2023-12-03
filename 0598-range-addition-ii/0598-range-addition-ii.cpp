@@ -3,13 +3,13 @@ class Solution
     public:
         int maxCount(int m, int n, vector<vector < int>> &ops)
         {
-            int mnx = INT_MAX;
-            int mny = INT_MAX;
+            int mnx = m;
+            int mny = n;
             int sz = ops.size();
-            if(sz==0)
-            {
-                return m*n;
-            }
+            // if(sz==0)
+            // {
+            //     return m*n;
+            // }
             for (int i = 0; i < sz; i++)
             {
                 mnx = min(mnx, ops[i][0]);
