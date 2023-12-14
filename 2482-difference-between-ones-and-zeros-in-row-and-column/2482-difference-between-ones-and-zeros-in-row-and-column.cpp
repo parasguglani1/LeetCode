@@ -2,56 +2,31 @@ class Solution {
 public:
     vector<vector<int>> onesMinusZeros(vector<vector<int>>& grid) {
         
-        int m=grid.size();
-        int n=grid[0].size();
-        
+        int n=grid.size();
+        int m=grid[0].size();
         vector<vector<int>> ans=grid;
-     vector<int> rows;
-        
-        for(int i=0;i<m;i++)
+        map<int,int>rows,cols;
+        for(int i=0;i<n;i++)
         {
-            int ones=0;
-            for(int j=0;j<n;j++)
-            {
-                if(grid[i][j]==1)
-                {
-                    ones++;
-                }
-                
-            }
-            rows.push_back(ones);
-            
-        }
-        
-        vector<int> cols;
-        
-         for(int i=0;i<n;i++)
-        {
-            int ones=0;
             for(int j=0;j<m;j++)
             {
-                if(grid[j][i]==1)
+                if(grid[i][j])
                 {
-                    ones++;
+                    rows[i]++;
+                    cols[j]++;
                 }
-                
             }
-            cols.push_back(ones);
-            
         }
         
-         for(int i=0;i<m;i++)
+        for(int i=0;i<n;i++)
         {
-            for(int j=0;j<n;j++)
+            for(int j=0;j<m;j++)
             {
-                int ones=rows[i]+cols[j];
-                int zeros= m+n-ones;
-                ans[i][j]=ones-zeros;
-                
+                int temp=2*rows[i]-n+2*cols[j]-m;
+                ans[i][j]=temp;
             }
-            
         }
-        
         return ans;
+        
     }
 };
