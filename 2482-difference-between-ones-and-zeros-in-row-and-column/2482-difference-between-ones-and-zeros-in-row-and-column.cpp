@@ -4,7 +4,7 @@ public:
         
         int n=grid.size();
         int m=grid[0].size();
-        vector<vector<int>> ans=grid;
+        // vector<vector<int>> ans=grid;
         map<int,int>rows,cols;
         for(int i=0;i<n;i++)
         {
@@ -23,10 +23,10 @@ public:
             for(int j=0;j<m;j++)
             {
                 int temp=2*rows[i]-n+2*cols[j]-m;
-                ans[i][j]=temp;
+                grid[i][j]=temp;
             }
         }
-        return ans;
+        return grid;
         
     }
 };
