@@ -8,14 +8,14 @@ public:
         }
         int ans=0;
         
-        for(auto &x:mp)
+        for(auto &[x,y]:mp)
         {
-            if(x.second==1)
+            if(y==1)
             {
                 return -1;
             }
          
-                ans+=ceil((float)x.second/3);
+                ans+=ceil((float)y/3);
          
         }
         return ans;
