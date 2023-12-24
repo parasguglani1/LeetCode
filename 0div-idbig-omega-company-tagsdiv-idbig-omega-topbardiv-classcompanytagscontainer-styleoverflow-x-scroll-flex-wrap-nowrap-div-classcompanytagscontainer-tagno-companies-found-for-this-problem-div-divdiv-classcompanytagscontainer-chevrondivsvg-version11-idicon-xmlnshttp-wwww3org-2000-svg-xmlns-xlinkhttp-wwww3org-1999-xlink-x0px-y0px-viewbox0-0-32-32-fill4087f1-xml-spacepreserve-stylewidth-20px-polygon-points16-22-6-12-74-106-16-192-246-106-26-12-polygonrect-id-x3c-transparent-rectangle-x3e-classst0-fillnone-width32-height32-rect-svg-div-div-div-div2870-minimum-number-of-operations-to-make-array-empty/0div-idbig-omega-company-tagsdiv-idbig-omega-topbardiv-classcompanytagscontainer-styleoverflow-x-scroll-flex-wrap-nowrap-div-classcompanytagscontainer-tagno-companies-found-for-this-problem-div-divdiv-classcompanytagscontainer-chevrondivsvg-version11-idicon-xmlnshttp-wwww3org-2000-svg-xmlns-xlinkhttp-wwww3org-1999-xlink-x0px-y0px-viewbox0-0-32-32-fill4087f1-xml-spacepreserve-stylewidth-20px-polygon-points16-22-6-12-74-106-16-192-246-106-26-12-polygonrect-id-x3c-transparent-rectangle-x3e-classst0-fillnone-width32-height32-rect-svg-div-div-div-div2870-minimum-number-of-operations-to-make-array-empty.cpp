@@ -8,7 +8,7 @@ public:
         }
         int ans=0;
         
-        for(auto x:mp)
+        for(auto &x:mp)
         {
             if(x.second==1)
             {
