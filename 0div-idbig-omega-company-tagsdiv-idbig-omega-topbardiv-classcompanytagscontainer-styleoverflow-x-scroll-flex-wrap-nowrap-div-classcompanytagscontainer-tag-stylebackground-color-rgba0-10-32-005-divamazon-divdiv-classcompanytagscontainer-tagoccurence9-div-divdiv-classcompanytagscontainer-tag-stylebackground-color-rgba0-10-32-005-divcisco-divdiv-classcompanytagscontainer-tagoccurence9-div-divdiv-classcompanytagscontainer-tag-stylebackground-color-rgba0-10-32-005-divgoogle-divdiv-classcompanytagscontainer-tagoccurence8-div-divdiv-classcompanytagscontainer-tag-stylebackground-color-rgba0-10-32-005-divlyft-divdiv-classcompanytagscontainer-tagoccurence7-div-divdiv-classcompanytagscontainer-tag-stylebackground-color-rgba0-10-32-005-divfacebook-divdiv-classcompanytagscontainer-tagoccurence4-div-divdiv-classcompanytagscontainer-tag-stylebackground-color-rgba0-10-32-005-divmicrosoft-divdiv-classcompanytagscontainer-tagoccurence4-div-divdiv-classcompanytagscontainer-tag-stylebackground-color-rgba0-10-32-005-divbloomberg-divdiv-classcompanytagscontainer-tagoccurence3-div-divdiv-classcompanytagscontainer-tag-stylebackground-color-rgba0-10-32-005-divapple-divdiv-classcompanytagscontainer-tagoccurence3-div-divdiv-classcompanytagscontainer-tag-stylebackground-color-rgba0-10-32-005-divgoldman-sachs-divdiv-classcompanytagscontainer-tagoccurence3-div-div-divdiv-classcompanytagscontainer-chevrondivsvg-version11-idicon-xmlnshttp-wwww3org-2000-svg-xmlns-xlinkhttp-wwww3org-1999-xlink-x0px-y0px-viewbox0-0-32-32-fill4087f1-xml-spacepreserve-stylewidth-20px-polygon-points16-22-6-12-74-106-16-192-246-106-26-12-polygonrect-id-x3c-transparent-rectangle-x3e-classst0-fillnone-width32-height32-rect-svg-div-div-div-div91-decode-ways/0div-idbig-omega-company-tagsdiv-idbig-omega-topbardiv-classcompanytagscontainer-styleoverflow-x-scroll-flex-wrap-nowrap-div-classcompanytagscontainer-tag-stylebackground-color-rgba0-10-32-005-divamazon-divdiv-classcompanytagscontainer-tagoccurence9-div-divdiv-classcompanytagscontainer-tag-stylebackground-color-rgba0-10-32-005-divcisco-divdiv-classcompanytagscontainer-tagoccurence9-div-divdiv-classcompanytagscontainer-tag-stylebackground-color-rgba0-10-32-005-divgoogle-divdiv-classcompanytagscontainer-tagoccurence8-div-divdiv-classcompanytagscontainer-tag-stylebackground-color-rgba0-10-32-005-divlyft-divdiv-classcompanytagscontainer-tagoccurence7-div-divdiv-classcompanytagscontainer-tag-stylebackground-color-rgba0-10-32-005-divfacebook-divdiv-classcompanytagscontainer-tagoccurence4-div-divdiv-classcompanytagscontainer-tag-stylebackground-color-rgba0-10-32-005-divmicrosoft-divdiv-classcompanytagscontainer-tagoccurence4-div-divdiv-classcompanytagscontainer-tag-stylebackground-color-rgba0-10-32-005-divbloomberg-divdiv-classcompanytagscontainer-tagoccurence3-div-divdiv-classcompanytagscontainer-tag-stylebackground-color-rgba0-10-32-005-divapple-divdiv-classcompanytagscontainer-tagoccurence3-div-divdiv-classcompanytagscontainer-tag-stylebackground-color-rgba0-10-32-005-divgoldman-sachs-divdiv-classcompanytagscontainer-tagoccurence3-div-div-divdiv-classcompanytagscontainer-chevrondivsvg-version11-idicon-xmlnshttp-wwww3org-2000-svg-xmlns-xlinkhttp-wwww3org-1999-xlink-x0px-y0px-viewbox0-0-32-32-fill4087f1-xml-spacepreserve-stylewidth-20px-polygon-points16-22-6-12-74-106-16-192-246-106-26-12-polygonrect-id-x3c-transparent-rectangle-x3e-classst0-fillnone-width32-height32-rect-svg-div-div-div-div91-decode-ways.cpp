@@ -35,22 +35,31 @@ public:
         vector<int> dp(n+1,0);
         dp[n]=1;
         //tab
-        
+        int next=1;
+        int nnext=0;
+        int cur=0;
         for(int i=n-1;i>=0;i--)
         {
             if(s[i]=='0')
             {
-                dp[i]=0;
-                continue;
+                cur=0;
             }
-            dp[i]=dp[i+1];
-            if(i+1<n && (s[i]=='1' ||(s[i]=='2' && s[i+1]<'7')))
+            else
             {
-                dp[i]+=dp[i+2];
+            cur=next;
+                
             }
             
+            if(i+1<n && (s[i]=='1' ||(s[i]=='2' && s[i+1]<'7')))
+            {
+                cur+=nnext;
+            }
+            nnext=next;
+            next=cur;
+            
+            
         }
-        return dp[0];
+        return cur;
         
 
         // return getans(s,0,dp);
