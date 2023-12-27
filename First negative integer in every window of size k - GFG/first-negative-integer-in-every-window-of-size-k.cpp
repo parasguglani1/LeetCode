@@ -43,23 +43,27 @@ vector<long long> printFirstNegativeInteger(long long int a[],
                                                  }
                                                  
                                                  vector<ll> ans(n-k+1);
-                                                 int j=0;
+                                                 int j=0,i=0;
                                                  int ngsz=negs.size();
-                                                for(int i=0;i<n-k+1;i++)
+                                                 while(i<n-k+1)
                                                 {
-                                                    if(j>=ngsz ||(i<negs[j] &&negs[j]>i+k-1))
+                                                    if(j>=ngsz)
                                                     {
-                                                        ans[i]=0;
+                                                        ans[i++]=0;
+                                                        continue;
                                                     }
-                                               
-                                                    else if(i<= negs[j] && negs[j]<i+k)
+                                                    int curneg=negs[j];
+                                                     if(i<curneg &&curneg>i+k-1)
                                                     {
-                                                        ans[i]=a[negs[j]];
+                                                        ans[i++]=0;
                                                     }
-                                                    else if(j<ngsz &&negs[j]<i)
+                                                    else if(i<= curneg && curneg<i+k)
+                                                    {
+                                                        ans[i++]=a[curneg];
+                                                    }
+                                                    else if(curneg<i)
                                                     {
                                                         j++;
-                                                        i--;
                                                     }
 
                                                     
