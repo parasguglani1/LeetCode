@@ -53,14 +53,14 @@ vector<long long> printFirstNegativeInteger(long long int a[],
                                                         continue;
                                                     }
                                                     int curneg=negs[j];
-                                               
-                                                     if(i<= curneg && curneg<i+k)
-                                                    {
-                                                        ans[i++]=a[curneg];
-                                                    }
-                                                    else if(curneg<i)
+                                                    
+                                                     if(curneg<i)
                                                     {
                                                         j++;
+                                                    }
+                                                    else if(curneg<i+k)
+                                                    {
+                                                        ans[i++]=a[curneg];
                                                     }
                                                     else {
                                                         ans[i++]=0;
