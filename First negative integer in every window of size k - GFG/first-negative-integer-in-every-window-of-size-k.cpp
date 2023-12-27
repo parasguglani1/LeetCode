@@ -32,8 +32,6 @@ int main() {
 vector<long long> printFirstNegativeInteger(long long int a[],
                                              long long int n, long long int k) {
                                                  
-                                                 set<int> st;
-                                                 
                                                  vector<ll> negs;
                                                  for(int i=0;i<n;i++)
                                                  {
@@ -49,13 +47,14 @@ vector<long long> printFirstNegativeInteger(long long int a[],
                                                  int ngsz=negs.size();
                                                 for(int i=0;i<n-k+1;i++)
                                                 {
-                                                    if(j<ngsz &&i<= negs[j] && negs[j]<i+k)
-                                                    {
-                                                        ans[i]=a[negs[j]];
-                                                    }
-                                                    else if(j>=ngsz ||(i<negs[j] &&negs[j]>i+k-1))
+                                                    if(j>=ngsz ||(i<negs[j] &&negs[j]>i+k-1))
                                                     {
                                                         ans[i]=0;
+                                                    }
+                                               
+                                                    else if(i<= negs[j] && negs[j]<i+k)
+                                                    {
+                                                        ans[i]=a[negs[j]];
                                                     }
                                                     else if(j<ngsz &&negs[j]<i)
                                                     {
