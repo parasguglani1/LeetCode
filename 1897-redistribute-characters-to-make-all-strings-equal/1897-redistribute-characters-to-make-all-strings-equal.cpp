@@ -5,15 +5,15 @@ public:
         
         int n=words.size();
         
-        for(auto x:words)
+        for(auto &x:words)
         {
-            for(auto y:x)
+            for(auto &y:x)
             {
                 freq[y-'a']++;
             }
         }
         
-        for(auto x:freq)
+        for(auto &x:freq)
         {
             
             if(x%n!=0)
