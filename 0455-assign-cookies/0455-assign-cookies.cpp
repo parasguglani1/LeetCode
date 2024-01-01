@@ -13,7 +13,7 @@ public:
                 i++;
                 j++;
             }
-            else if(g[i]>s[j])
+            else 
             {
                 j++;
             }
