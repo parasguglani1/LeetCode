@@ -14,12 +14,12 @@ public:
         for(auto &x:mp)
         {
             
-            int ele=x.first;
-            int freq=x.second;
+            auto &ele=x.first;
+            auto &freq=x.second;
             
             for(int i=0;i<freq;i++)
             {
-                ans[i].push_back(ele);
+                ans[i].emplace_back(ele);
             }
         }
         return ans;
