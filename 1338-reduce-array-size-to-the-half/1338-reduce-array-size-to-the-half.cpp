@@ -4,7 +4,7 @@ class Solution
         int minSetSize(vector<int> &arr)
         {
             map<int, int> mp;
-            for (auto x: arr)
+            for (auto &x: arr)
             {
                 mp[x]++;
             }
@@ -12,7 +12,7 @@ class Solution
             int sum = 0;
 
             vector<int> v;
-            for (auto x: mp)
+            for (auto &x: mp)
             {
                 v.push_back(x.second);
             }
