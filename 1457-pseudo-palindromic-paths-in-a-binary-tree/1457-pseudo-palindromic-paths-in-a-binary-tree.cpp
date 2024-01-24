@@ -1,12 +1,12 @@
 /**
  *Definition for a binary tree node.
  *struct TreeNode {
- *   int val;
- *   TreeNode * left;
- *   TreeNode * right;
- *   TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *  int val;
+ *  TreeNode * left;
+ *  TreeNode * right;
+ *  TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *  TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  *};
  */
 class Solution
@@ -18,7 +18,7 @@ class Solution
             if (root->left == nullptr && root->right == nullptr)
             {
                 int oddcnt = 0;
-                for (auto x: freq)
+                for (auto &x: freq)
                 {
                     if (x % 2)
                     {
@@ -26,12 +26,7 @@ class Solution
                     }
                 }
                 freq[root->val]--;
-
-                if (oddcnt < 2)
-                {
-                    return  1;
-                }
-                return 0;
+                return oddcnt < 2;
             }
             int a = 0;
             if (root->left)
@@ -43,14 +38,14 @@ class Solution
                 a += getans(root->right, freq);
             }
             freq[root->val]--;
-            // cout << a << endl;
+           	// cout << a << endl;
             return a;
         }
     int pseudoPalindromicPaths(TreeNode *root)
     {
         vector<int> freq(10, 0);
         int ans = 0;
-        int bans=getans(root, freq);
+        int bans = getans(root, freq);
         return bans;
     }
 };
