@@ -12,7 +12,7 @@
 class Solution
 {
     public:
-        int getans(TreeNode *root, vector<int> &freq, int ans)
+        int getans(TreeNode *root, vector<int> &freq)
         {
             freq[root->val]++;
             if (root->left == nullptr && root->right == nullptr)
@@ -29,18 +29,18 @@ class Solution
 
                 if (oddcnt < 2)
                 {
-                    return ans + 1;
+                    return  1;
                 }
-                return ans;
+                return 0;
             }
             int a = 0;
             if (root->left)
             {
-                a += getans(root->left, freq, ans);
+                a += getans(root->left, freq);
             }
             if (root->right)
             {
-                a += getans(root->right, freq, ans);
+                a += getans(root->right, freq);
             }
             freq[root->val]--;
             // cout << a << endl;
@@ -50,7 +50,7 @@ class Solution
     {
         vector<int> freq(10, 0);
         int ans = 0;
-        int bans=getans(root, freq, ans);
+        int bans=getans(root, freq);
         return bans;
     }
 };
