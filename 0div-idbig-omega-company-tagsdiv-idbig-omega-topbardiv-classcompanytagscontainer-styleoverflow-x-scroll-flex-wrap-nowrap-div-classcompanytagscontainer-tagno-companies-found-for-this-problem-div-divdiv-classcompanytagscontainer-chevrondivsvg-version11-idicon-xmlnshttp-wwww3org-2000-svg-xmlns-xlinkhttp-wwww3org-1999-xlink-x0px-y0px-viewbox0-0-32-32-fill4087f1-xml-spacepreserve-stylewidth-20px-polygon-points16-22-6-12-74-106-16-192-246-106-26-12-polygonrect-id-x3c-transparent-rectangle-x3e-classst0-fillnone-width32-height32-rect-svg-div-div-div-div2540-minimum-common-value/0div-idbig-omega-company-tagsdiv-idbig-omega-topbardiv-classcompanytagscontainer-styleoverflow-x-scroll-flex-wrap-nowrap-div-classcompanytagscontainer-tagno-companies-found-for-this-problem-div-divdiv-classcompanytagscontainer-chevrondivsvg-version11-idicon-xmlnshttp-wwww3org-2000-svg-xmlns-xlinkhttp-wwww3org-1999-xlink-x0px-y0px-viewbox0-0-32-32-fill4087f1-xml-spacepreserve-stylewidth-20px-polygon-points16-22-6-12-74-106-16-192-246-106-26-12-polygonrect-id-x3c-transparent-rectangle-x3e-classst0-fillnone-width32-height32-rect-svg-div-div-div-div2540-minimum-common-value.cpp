@@ -9,7 +9,7 @@ class Solution
                 {
                     return nums1[i];
                 }
-                else if(i!=n-1 &&nums1[i]<nums2[j])
+                else if( nums1[i]<nums2[j])
                 {
                     i++;
                 }
