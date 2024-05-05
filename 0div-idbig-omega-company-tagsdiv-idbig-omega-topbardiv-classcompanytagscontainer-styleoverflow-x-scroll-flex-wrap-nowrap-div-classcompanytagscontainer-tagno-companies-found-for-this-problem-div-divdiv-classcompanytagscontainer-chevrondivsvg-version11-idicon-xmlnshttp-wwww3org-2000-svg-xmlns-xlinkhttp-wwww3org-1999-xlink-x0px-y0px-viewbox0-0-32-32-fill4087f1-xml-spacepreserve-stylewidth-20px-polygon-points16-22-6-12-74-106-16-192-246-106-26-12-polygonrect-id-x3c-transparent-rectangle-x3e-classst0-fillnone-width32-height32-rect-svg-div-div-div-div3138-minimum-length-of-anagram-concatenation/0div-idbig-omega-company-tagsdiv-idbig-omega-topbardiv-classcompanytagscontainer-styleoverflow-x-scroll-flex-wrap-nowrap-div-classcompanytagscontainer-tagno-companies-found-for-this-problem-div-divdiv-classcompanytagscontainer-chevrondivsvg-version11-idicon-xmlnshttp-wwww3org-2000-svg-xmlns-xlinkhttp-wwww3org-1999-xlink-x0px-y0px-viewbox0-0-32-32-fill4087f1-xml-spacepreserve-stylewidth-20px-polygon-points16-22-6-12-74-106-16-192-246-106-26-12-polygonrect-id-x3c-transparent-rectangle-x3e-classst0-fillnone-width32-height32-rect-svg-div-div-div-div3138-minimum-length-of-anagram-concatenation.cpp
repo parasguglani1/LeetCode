@@ -2,13 +2,13 @@ class Solution {
 public:
     int minAnagramLength(string s) {
         vector<int> freq(26,0);
-        for(auto x:s)
+        for(auto &x:s)
         {
             freq[x-'a']++;
         }
         
         int mxfreq=INT_MAX;
-        for(auto x: freq)
+        for(auto &x: freq)
         {
             if(x!=0)
             mxfreq=min(mxfreq,x);
@@ -16,7 +16,7 @@ public:
         
         int gcd=mxfreq;
         
-        for(auto x: freq)
+        for(auto &x: freq)
         {
             if(x!=0)
             {
