@@ -1,43 +1,55 @@
 /**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
+ *Definition for singly-linked list.
+ *struct ListNode {
+ *    int val;
+ *    ListNode * next;
+ *    ListNode() : val(0), next(nullptr) {}
+ *    ListNode(int x) : val(x), next(nullptr) {}
+ *    ListNode(int x, ListNode *next) : val(x), next(next) {}
+ *};
  */
-class Solution {
-public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-     ListNode * head=new ListNode();
-        ListNode* temp1=list1,*temp2=list2,*temp=head;
-        
-        while(temp1&&temp2)
+class Solution
+{
+    public:
+        ListNode* mergeTwoLists(ListNode *list1, ListNode *list2)
         {
-            if(temp1->val<temp2->val)
+            if (!list1) return list2;
+            if (!list2) return list1;
+
+            ListNode *head = nullptr;
+            ListNode *curr = nullptr;
+            ListNode *curr1 = list1;
+            ListNode *curr2 = list2;
+
+            if (curr1->val <= curr2->val)
             {
-                temp->next=temp1;
-                temp1=temp1->next;
-                temp=temp->next;
+                curr = curr1;
+                curr1 = curr1->next;
             }
             else
             {
-                temp->next=temp2;
-                temp2=temp2->next;
-                 temp=temp->next;
+                curr = curr2;
+                curr2 = curr2->next;
             }
-            
+            head=curr;
+
+            while (curr1 && curr2)
+            {
+                if (curr1->val <= curr2->val)
+                {
+                    curr->next = curr1;
+                    curr1 = curr1->next;
+                }
+                else
+                {
+                    curr->next = curr2;
+                    curr2 = curr2->next;
+                }
+                curr = curr->next;
+            }
+
+            curr->next = curr1 ? curr1 : curr2;
+
+            return head;
         }
-        if(temp1)
-        {
-            temp->next=temp1;
-        }
-        if(temp2)
-        {
-            temp->next=temp2;
-        }
-        return head->next;
-    }
 };
