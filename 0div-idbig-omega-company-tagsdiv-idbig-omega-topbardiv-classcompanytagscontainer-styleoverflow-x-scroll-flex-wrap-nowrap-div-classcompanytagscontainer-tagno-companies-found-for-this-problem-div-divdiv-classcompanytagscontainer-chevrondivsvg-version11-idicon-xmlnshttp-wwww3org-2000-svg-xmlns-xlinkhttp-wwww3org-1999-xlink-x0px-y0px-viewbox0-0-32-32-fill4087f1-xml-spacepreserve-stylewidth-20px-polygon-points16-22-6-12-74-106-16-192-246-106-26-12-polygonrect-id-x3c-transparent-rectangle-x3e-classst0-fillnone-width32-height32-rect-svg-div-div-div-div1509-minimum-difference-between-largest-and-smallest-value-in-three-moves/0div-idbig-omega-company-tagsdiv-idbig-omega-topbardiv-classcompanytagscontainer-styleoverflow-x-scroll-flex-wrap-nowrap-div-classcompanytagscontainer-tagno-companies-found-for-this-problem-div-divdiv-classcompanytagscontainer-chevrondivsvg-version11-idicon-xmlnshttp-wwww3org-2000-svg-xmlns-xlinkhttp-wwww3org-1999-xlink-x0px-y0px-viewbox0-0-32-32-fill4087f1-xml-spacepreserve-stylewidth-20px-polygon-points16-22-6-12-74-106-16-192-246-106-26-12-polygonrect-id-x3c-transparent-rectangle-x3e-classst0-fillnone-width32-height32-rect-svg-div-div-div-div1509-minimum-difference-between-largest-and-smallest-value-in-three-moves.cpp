@@ -3,11 +3,7 @@ public:
     int minDifference(vector<int>& nums) {
         int n=nums.size();
 
-        set<int> s;
-        for(auto x: nums)
-        {
-            s.insert(x);
-        }
+
         if(n<5)
         {
             return 0;
