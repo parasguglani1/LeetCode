@@ -1,7 +1,7 @@
 class Solution
 {
     public:
-        int removeStr(string &s, string rem)
+        int removeStr(string &s, string &rem)
         {
             stack<char> st;
             int cnt = 0;
@@ -23,7 +23,6 @@ class Solution
                 res += st.top();
                 st.pop();
             }
-            reverse(res.begin(), res.end());
             s = res;
             return cnt;
         }
@@ -45,7 +44,7 @@ class Solution
        	//remove rem1 first then remove rem2
 
         int ans = removeStr(s, rem1) *topscore;
-        ans += removeStr(s, rem2) *lessscore;
+        ans += removeStr(s, rem1) *lessscore;
         return ans;
     }
 };
