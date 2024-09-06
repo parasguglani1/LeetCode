@@ -1,42 +1,37 @@
 /**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
+ *Definition for singly-linked list.
+ *struct ListNode {
+ *    int val;
+ *    ListNode * next;
+ *    ListNode() : val(0), next(nullptr) {}
+ *    ListNode(int x) : val(x), next(nullptr) {}
+ *    ListNode(int x, ListNode *next) : val(x), next(next) {}
+ *};
  */
-class Solution {
-public:
-    ListNode* modifiedList(vector<int>& nums, ListNode* head) {
-        ListNode * ans=new ListNode(0);
-        
-        map<int,int> mp;
-        ListNode* tail=ans;
-        for(auto x:nums)
+class Solution
+{
+    public:
+        ListNode* modifiedList(vector<int> &nums, ListNode *head)
         {
-            mp[x]++;
-        }
-        
-        while(head )
-        {
-            if(mp[head->val]!=0)
+            ListNode *ans = new ListNode(0);
+
+            map<int, int> mp;
+            ListNode *tail = ans;
+            for (auto x: nums)
             {
-                // head=head->next;
-                
+                mp[x]++;
             }
-            else
+
+            while (head)
             {
-                tail->next=head;
-                tail=tail->next;
+                if (mp[head->val] == 0)
+                {
+                    tail->next = head;
+                    tail = tail->next;
+                }
+                head = head->next;
             }
-                head=head->next;
-      
+            tail->next = nullptr;
+            return ans->next;
         }
-        tail->next=nullptr;
-        return ans->next;
-        
-    }
 };
